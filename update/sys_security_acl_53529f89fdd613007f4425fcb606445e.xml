@@ -7,20 +7,20 @@
         <condition/>
         <description>Default access control on x_snc_loaner_reque_loaner_request</description>
         <name>x_snc_loaner_reque_loaner_request</name>
-        <operation display_value="create">create</operation>
-        <script/>
+        <operation display_value="write">write</operation>
+        <script><![CDATA[answer = current.isNewRecord();]]></script>
         <sys_class_name>sys_security_acl</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2018-05-23 12:33:58</sys_created_on>
-        <sys_id>af874ab4fdd213007f4425fcb6064466</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_created_on>2018-05-24 12:39:17</sys_created_on>
+        <sys_id>53529f89fdd613007f4425fcb606445e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>x_snc_loaner_reque_loaner_request</sys_name>
         <sys_package display_value="Loaner Request" source="x_snc_loaner_reque">04b50230fdd213007f4425fcb6064453</sys_package>
         <sys_policy/>
         <sys_scope display_value="Loaner Request">04b50230fdd213007f4425fcb6064453</sys_scope>
-        <sys_update_name>sys_security_acl_af874ab4fdd213007f4425fcb6064466</sys_update_name>
+        <sys_update_name>sys_security_acl_53529f89fdd613007f4425fcb606445e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-05-24 12:37:42</sys_updated_on>
+        <sys_updated_on>2018-05-24 12:39:33</sys_updated_on>
         <type display_value="record">record</type>
     </sys_security_acl>
 </record_update>
