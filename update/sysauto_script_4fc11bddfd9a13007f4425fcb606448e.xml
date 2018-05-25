@@ -13,26 +13,36 @@
         <run_start>2018-05-25 07:15:18</run_start>
         <run_time>1970-01-01 08:00:00</run_time>
         <run_type>periodically</run_type>
-        <script><![CDATA[var lutil = new x_snc_loaner_reque.LoanerUtils();
-var plist = [];
+        <script><![CDATA[var gr = new GlideRecord('x_snc_loaner_reque_loaner_request');
+var pickUpLeadTime = gs.getProperty('x_snc_loaner_reque.pickup.leadtime',24) * 60 * 60 * 1000;
 
-plist = lutil.getNullPickUpReminders();
+var noticeTime = new GlideDateTime();
+noticeTime.add(pickUpLeadTime);
 
-for(var i=0; i<plist.length; i++){
-	lutil.sendPickUpReminder(plist[i]);	
+gr.addQuery('state',16);
+gr.addQuery('pick_up_reminder','');
+gr.addQuery('start_date', '<=',noticeTime);
+gr.query();
+
+var rightNow = new GlideDateTime();
+
+while (gr.next()) {
+	gr.pick_up_reminder = rightNow;
+	gr.update();
+	gs.eventQueue('x_snc_loaner_reque.pickUp',gr,gr.number,gs.getUserName());
 }]]></script>
         <sys_class_name>sysauto_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-05-25 07:16:25</sys_created_on>
         <sys_id>4fc11bddfd9a13007f4425fcb606448e</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Loaner Item Pick Up</sys_name>
         <sys_package display_value="Loaner Request" source="x_snc_loaner_reque">04b50230fdd213007f4425fcb6064453</sys_package>
         <sys_policy/>
         <sys_scope display_value="Loaner Request">04b50230fdd213007f4425fcb6064453</sys_scope>
         <sys_update_name>sysauto_script_4fc11bddfd9a13007f4425fcb606448e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2018-05-25 07:44:57</sys_updated_on>
+        <sys_updated_on>2018-05-25 10:14:34</sys_updated_on>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>
 </record_update>
